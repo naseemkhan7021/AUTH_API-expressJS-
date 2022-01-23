@@ -1,0 +1,101 @@
+@baseUrl = http://localhost:8080
+@backendUrl = /api/v1
+
+ @u_id = 61ed70e65f60eb14fcc7fd6f
+GET {{baseUrl}}/ HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+######## user #########
+#register new user
+POST {{baseUrl}}{{backendUrl}}/register HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+{
+     "name":"user",
+     "email":"user1@gmail.com",
+     "password":"123456789"
+}
+
+###
+#login user
+POST {{baseUrl}}{{backendUrl}}/login HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+{
+     "email":"user@gmail.com",
+     "password":"123456789"
+}
+
+
+###
+#logout user
+GET {{baseUrl}}{{backendUrl}}/logout HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+###
+#forgot password user
+GET {{baseUrl}}{{backendUrl}}/password/forgot HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+{
+     "email":"user@gmail.com"
+}
+
+###
+#reset password user
+PATCH {{baseUrl}}{{backendUrl}}/password/reset/1815a5c87b2ddb1204d656713e46092c3099af3c HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+{
+     "password":"123456",
+     "confirmPassword":"123456"
+}
+
+###
+#getuser profile => /api/v1/me
+GET {{baseUrl}}{{backendUrl}}/me HTTP/1.1
+
+###
+#update password => /api/v1/password/update
+PATCH {{baseUrl}}{{backendUrl}}/password/update HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+{
+     "oldPassword":"123456",
+     "newPassword":"123456789"
+}
+
+###
+# update user profile => api/v1/me/udpate
+PUT {{baseUrl}}{{backendUrl}}/me/update HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+{
+     "email":"newuser@gmail.com"
+}
+
+###
+# show all users => /api/v1/admin/users
+GET {{baseUrl}}{{backendUrl}}/admin/users HTTP/1.1
+
+###
+# update user by admin == /api/v1/admin/user/:u_id
+PUT {{baseUrl}}{{backendUrl}}/admin/user/{{u_id}} HTTP/1.1
+Content-Type: application/json
+Accept: application/json'
+
+{
+     "name":"new user"
+}
+
+###
+# Delete user by admin == /api/v1/admin/user/:u_id
+DELETE  {{baseUrl}}{{backendUrl}}/admin/user/{{u_id}} HTTP/1.1
